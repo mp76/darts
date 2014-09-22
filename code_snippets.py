@@ -1,4 +1,4 @@
-# Iteration ueber alle Argumente:
+# catching command line args
 import sys
 for a in sys.argv:
 	print (a)
