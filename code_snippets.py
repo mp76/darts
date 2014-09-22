@@ -1,3 +1,9 @@
+# reading with configparser
+import configparser
+cp = configparser.Configparser()
+cp.read('file')
+cp.sections()
+
 # catching command line args
 import sys
 for a in sys.argv:

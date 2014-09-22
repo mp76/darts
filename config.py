@@ -1,4 +1,6 @@
 import sys
+import configparser
+
 class Borg:
     _shared_state = {}
     def __init__(self):
@@ -8,7 +10,10 @@ class Config(Borg):
         """ implemented as Borg """
         def __init__(self, args):
             Borg.__init__(self)
-            self.d=dict.fromkeys(range(180), 0)
+            cp = configparser.ConfigParser()
+            cp.read('darts.conf')
+            self.sections = cp.sections()
+            self.d = dict.fromkeys(range(180), 0)
         def mapFu():
             pass
 
