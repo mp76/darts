@@ -13,6 +13,7 @@ class Config(Borg):
             cp = configparser.ConfigParser()
             cp.read('darts.conf')
             self.sections = cp.sections()
+            self.score = cp['DEFAULT']['score']
             self.d = dict.fromkeys(range(180), 0)
         def mapFu():
             pass

@@ -1,8 +1,10 @@
 # reading with configparser
 import configparser
-cp = configparser.Configparser()
+cp = configparser.ConfigParser()
 cp.read('file')
 cp.sections()
+cp['SPECIAL']['tags']
+# gives true if present
 
 # catching command line args
 import sys
