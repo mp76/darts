@@ -8,13 +8,13 @@ class Borg:
 
 class Config(Borg):
         """ implemented as Borg """
-        def __init__(self, args):
+        def __init__(self, args=[]):
             Borg.__init__(self)
             cp = configparser.ConfigParser()
             cp.read('darts.conf')
             self.sections = cp.sections()
             self.score = cp['DEFAULT']['score']
-            #FIXME:self.tags = cp['SPECIAL']['tags']
+            self.tags = cp['SPECIAL']['tags']
             #self.d = dict.fromkeys(range(180), 0)
         def mapFu():
             pass

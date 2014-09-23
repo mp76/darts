@@ -23,3 +23,8 @@ foo.__dict__
 dir(foo)
 #bzw foo.__dir__()  
 
+id(foo)
+#addres
+
+type(foo)
+# yo man
