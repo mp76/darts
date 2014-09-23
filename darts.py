@@ -1,5 +1,5 @@
 import sys
-from config import *
+from config import Config
 
 class Turn:
     def __init__(self, params):
@@ -10,7 +10,7 @@ class Game:
         self.params = params[:]
         self.confObj = Config(self.params)
         self.listOfTurns = []
-        self.score = self.confObj.score
+#        self.score = self.confObj.score
 
     def startGame(self):
         #now decrement self.score
