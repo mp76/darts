@@ -8,7 +8,8 @@ class Dart:
 
 class Turn(dict):
     # inherit list or dict or what?
-    def __init__(self, params):
+    def __init__(self, params=[]):
+        #FIXME: should get darts
         pass
 
 class Game:
@@ -16,26 +17,30 @@ class Game:
         self.params = params[:]
         self.confObj = Config(self.params)
         self.listOfTurns = []
-        self.checkout = False
-        self.score = (int)(self.confObj.score)
+        self.score = self.confObj.score
+        self.inPlay = False
 
     def startGame(self):
-        while self.checkout == False:
-            self.logTurn(input("tell me: "))
+        self.inPlay = True
+        while self.inPlay: 
+            self.logTurn()
     
-    def logTurn(self, newTurn):
-        """ expects a Turn object (dict) """
-        #strip score from metadata here, handle each.
+    def logTurn(self):
+        t = Turn()
+        for i in range(self.confObj.dartsPerTurn):
+            t[i] = input('dart %d, enter code: '%(i+1))
+        # strip score from metadata here, handle each.
+        # make sure self.inPlay is unset when checkou
 #        for i in (re.findall(r'\d+', foo)):
 #                print(i)
 # FIXME: this shall do, replace foo
         
-        self.listOfTurns.append(newTurn)
+    #    self.listOfTurns.append(newTurn)
 
 if __name__ == "__main__":
     print("configuring game: ")
     g = Game(["just a random parameter"])
-    print("starting game...")
-    g.startGame()
+    #print("starting game...")
+    #g.startGame()
 
     
