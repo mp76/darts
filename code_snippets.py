@@ -28,3 +28,10 @@ id(foo)
 
 type(foo)
 # yo man
+sys?
+sys__dict__
+(i had been wondering where all of this is kept ^^
+sys.version
+sys.argv
+sys.path
+sys.stdin
