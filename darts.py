@@ -20,36 +20,61 @@ class Turn(dict):
     # inherit list or dict or what?
     # should consist of Darts, anyway
     def __init__(self, params=[]):
-        #FIXME
+        #TODO
         pass
 
-class Game:
+class Session:
     def __init__(self, params=[]):
-        self.inPlay = False
         self.params = params[:]
         self.confObj = Config(self.params)
+        self.confObj.timestamp = datetime.now().timestamp()
         self.listOfTurns = []
-        self.score = self.confObj.score
 
-    def startGame(self):
-        self.inPlay = True
-        while self.inPlay: 
-            self.logTurn()
-    
     def logTurn(self):
         t = Turn()
         for i in range(self.confObj.dartsPerTurn):
             t[i] = Dart(input('dart %d, enter code: '%(i+1)))
             print('you entered: %s, i appended it to actual turn.'%(t[i]))
         self.listOfTurns.append(t)
-            print('appended turn to listOfTurns')
+        print('appended turn to listOfTurns')
         
+    def saveSession(self):
+        for t in self.listOfTurns:
+            print(t)
+            for d in t:
+                print (d)
+        pass
+         #TODO: save the listOfTurns in an appropriate format.
         
-    #    self.listOfTurns.append(newTurn)
+
+    def startSession(self):
+        print('starting session, your tags read:')
+        print(self.confObj.tags)
+        print('\"q return\" will end your session.')
+        while True:
+            self.logTurn()
+
+        self.saveSession()
+
+
+
+class Game(Session):
+    def __init__(self, params=[]):
+        super().__init__()
+        self.inPlay = True
+        self.score = self.confObj.score
+    
+
+    def startGame(self):
+        self.inPlay = True
+        while self.inPlay: 
+            self.logTurn()
+    
 
 if __name__ == "__main__":
-    print("configuring game: ")
-    g = Game(["just a random parameter"])
+    print("configuring session: ")
+    s = Session()
+    #g = Game(["just a random parameter"])
     #print("starting game...")
     #g.startGame()
 
