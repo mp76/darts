@@ -20,7 +20,7 @@ class Dart:
         pass
 
 class Turn(dict):
-    # inherit list or dict or what?
+    # inherit list or dict or what? #FIXME as TUPEL!!!
     # should consist of Darts, anyway
     def __init__(self, params=[]):
         #TODO
