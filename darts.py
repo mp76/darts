@@ -7,13 +7,16 @@ class Dart:
     score (int), optional
     tags (list), optional """
     def __init__(self, string):
-        #FIXME
-        # strip score from metadata here, handle each.
-        # make sure self.inPlay is unset when checkou
-        #for i in (re.findall(r'\D+', t[i])):
+        # strip score from metadata here, handle each in seperate f.
+        # make sure self.inPlay is unset when in checkout mode
+
+        for i in (re.findall(r'\D+', t[i])):
+            pass
+            #FIXME
             #score i in some map
+            #in some map, yeah... hmmm
          #   print(i)
-        #self.score -= re.search(r'\d+', t[i]
+        self.score -= re.search(r'\d+', t[i]
         pass
 
 class Turn(dict):
@@ -53,6 +56,8 @@ class Session:
         print('\"q return\" will end your session.')
         while True:
             self.logTurn()
+            #idea: catch EOF Error in logTurn() or here and 
+            # save session in handler
 
         self.saveSession()
 
