@@ -11,8 +11,10 @@ class Config(Borg):
             Borg.__init__(self)
             cparser = configparser.ConfigParser()
             cparser.read('darts.conf')
+            self.mode = cparser['SETTINGS']['mode']
+            self.nPlayers = cparser['SETTINGS']['nplayers']
             self.score = int(cparser['GAME']['score'])
-            self.dartsPerTurn = int(cparser['GAME']['dartsPerTurn'])
+            self.dartsPerTurn = int(cparser['SETTINGS']['dartsPerTurn'])
             self.tags = dict(cparser['TAGS'])
             #self.d = dict.fromkeys(range(180), 0)
         def mapFu():
