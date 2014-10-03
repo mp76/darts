@@ -18,11 +18,8 @@ class Dart:
         
 class Turn(list):
     def __init__(self):
-        for i in range(self.confObj.dartsPerTurn):
+        for i in range(Config().dartsPerTurn):
             self.append(input('dart %d, enter code: '%(i+1)))
-            print('you entered: %s, i appended it to actual turn.'%(t[i]))
-        pass
-
 
 
 class Session:
@@ -51,12 +48,13 @@ class Session:
         print('starting session, your tags read:')
         print(self.confObj.tags)
         print('\"q return\" will end your session.')
-        while True:
-            self.logTurn()
+        try:
+            while True:
+                self.logTurn()
             #TODO: idea: catch Exception EOFError in logTurn() or here and 
             # save session in handler
-
-        self.saveSession()
+        except (EOFError):
+            self.saveSession()
 
 
 
