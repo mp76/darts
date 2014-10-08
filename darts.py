@@ -34,19 +34,20 @@ class Session:
         self.listOfTurns.append(t)
 
     def openSession(self):
-        with open("darts.csv") as csvfile:
+        with open('darts.csv','r', newline='') as csvfile:
             r = csv.reader(csvfile)
             for row in r:
-                self.listOfTurns.append(r)
+                self.listOfTurns.append(row)
                 #FIXME  
 
     def saveSession(self):
         #flatList = [ 
-        with open('darts.csv', 'w') as csvfile:
+        with open('darts.csv', 'w', newline='') as csvfile:
+            csvfile.write(str(self.timestamp) + '\n')
             wri=csv.writer(csvfile)
-            wri.writerow(datetime.fromtimestamp(self.timestamp))
             for t in self.listOfTurns:
                 wri.writerow(t)
+
     def startSession(self):
         print('starting session, your definded tags read:')
         print(self.confObj.tags)
@@ -55,7 +56,7 @@ class Session:
             while True:
                 self.logTurn()
         except (EOFError):
-            print('EOF caught, closing session')
+            print('\n.\n.\nEOF caught, closing session\.\.\.')
             self.saveSession()
 
 class Game(Session):
@@ -70,7 +71,7 @@ class Game(Session):
             self.logTurn()
     
 
-if __name__ == "__main__":
-    print("configuring session: ")
-    with Session() as s:
-        s.startSession()
+#if __name__ == "__main__":
+ #   print("configuring session: ")
+ #   with Session() as s:
+ #       s.startSession()
