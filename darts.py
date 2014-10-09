@@ -12,13 +12,18 @@ class Dart:
         self.tags = re.findall(r'\D', string)
         
 class Turn(list):
+    #FIXME: this thing needs a timestamp
+    #FIXME: user interaction shouldn't really go here
     """ a List of Darts """
     def __init__(self):
         for i in range(Config().dartsPerTurn):
             self.append(input('dart %d, enter code: '%(i+1)))
+            #FIXME  
+            if i==2:
+                print('\n')
 
 class Session:
-    
+    #TODO: Sessions should be taggable too    
     def __init__(self, params=[]):
         self.params = params[:]
         self.confObj = Config(self.params)
@@ -37,16 +42,17 @@ class Session:
         with open('darts.csv','r', newline='') as csvfile:
             r = csv.reader(csvfile)
             for row in r:
+                #TODO: what exactly is it we want to import here
                 self.listOfTurns.append(row)
 
     def saveSession(self):
         #flatList = [ 
-        with open('darts.csv', 'w', newline='') as csvfile:
+        with open('darts.csv', 'a', newline='') as csvfile:
             csvfile.write(str(self.timestamp) + '\n')
-#            FIXME: timestamp only written on empty file
             wri=csv.writer(csvfile)
             for t in self.listOfTurns:
                 wri.writerow(t)
+        #TODO add new tags to configparser file here
 
     def startSession(self):
         print('starting session, your definded tags read:')
