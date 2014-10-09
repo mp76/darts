@@ -38,12 +38,12 @@ class Session:
             r = csv.reader(csvfile)
             for row in r:
                 self.listOfTurns.append(row)
-                #FIXME  
 
     def saveSession(self):
         #flatList = [ 
         with open('darts.csv', 'w', newline='') as csvfile:
             csvfile.write(str(self.timestamp) + '\n')
+#            FIXME: timestamp only written on empty file
             wri=csv.writer(csvfile)
             for t in self.listOfTurns:
                 wri.writerow(t)
